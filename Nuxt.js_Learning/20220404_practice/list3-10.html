@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list3-10
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <calc/>
+    </div>
+
+
+    <script>
+    Vue.component('calc',{
+        //methodsを使う場合はボックスのフォーカスアウトでイベントを発火していたが、
+        //computedにすることでプロパティとして{{computed_name}}で呼び出せる
+        //※タイミングは「関数内で使われている値が変化したときのみ」になる点に注意
+        template:'<div><div><input type="number" v-model="num"></div><p>今までの合計：{{totalCalc}}</p></div>',
+        
+        data: function(){
+            return{
+                total:0,
+                num:0
+            }
+        },
+        computed:{
+            totalCalc:function(){
+                console.log("totalcalc")
+                console.log(typeof(this.total))
+                this.total+=Number(this.num)
+                console.log('total:'+this.total)
+                return this.total
+            }
+        },
+    });
+
+
+    var app = new Vue({
+        el:'#app',
+    });
+
+
+
+    </script> 
+</body>
+</html>

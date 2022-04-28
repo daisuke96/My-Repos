@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        My first VUe app
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <!--
+        <div id="app">{{ message }}</div>
+        <div id="app">{{ message.toUpperCase() }}</div> 
+            <div id="app">{{ '税込：'+ message*1.10 + '円です。' }}</div>
+    -->
+
+    <div id="app">{{ message }}</div>
+
+
+    <button onclick="doAction()">更新</button>
+    <input type="text" oninput="doInput(event);">
+
+    <script>
+        
+
+
+
+        // 変数　= new Vue(オブジェクト);
+        //el:対象（ここではid=appを指定）
+        var data = {
+            message:'Hello Vue',
+            items:["apple","peach","banana"],
+
+
+        }
+        var app = new Vue({
+            //elはidもしくは”ひとつしかない”classを指定する必要あり
+
+            el: '#app',
+            data:data,
+
+            render:(h)=>{
+                //renderは指定したタグで上書きする
+                //第二引数に属性を設定することも可能
+                //return element("h1",{'style':'font-size:20pt; color:red;'},data.message);
+                
+                /**第３引数は対象のVNodeだが、リストで複数にすることも可能
+                return element("ol",[
+                    element("li","item 1"),
+                    element("li","item 2"),
+                    element("li","item 3")
+                ]);
+                **/
+               console.log("render")
+                /**
+                var p = element("p",{style:'font-size:20pt;'},data.message);
+                var li = data.items.map(item=>element("li",item));
+                var ol = element("ol",li);
+                var div = element("div",[p, ol]);
+                return div;
+                下記に書き直しを記載elementをhに変更にし、入れ子を作成
+                **/
+               return h("div",[
+                          h("p",{style:'font-size:20pt;'},data.message),
+                          h("ol",data.items.map(item=>h("li",item)))
+                        ])
+
+            }
+
+        })
+
+        //クリック時のアクション
+        function doAction(){
+            //
+            //data.message = 'You Clicked';
+            //画面に表示されている{{message}}を更新しないと上記renderが走らない？
+
+
+
+            console.log("クリック")
+            data.message="click!!!!!!!!!!!"
+            var newitems=["リンゴ","モモ","バナナ"]
+
+        
+                for(item in data.items){
+                console.log(item);
+                console.log("前"+data.items[item])
+                data.items[item]=newitems[item]
+                console.log("後"+data.items[item])
+            }
+
+        
+
+
+
+        }
+
+        //入力時のアクション
+        function doInput(event){
+            console.log("入力")
+            data.message = event.target.value;
+            
+        }
+
+
+
+    </script> 
+ 
+</body>
+</html>

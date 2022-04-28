@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list2-14
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <!--属性に値をバインド-->
+        <p v-bind:style="style">{{ message }}</p>
+    </div>
+    <hr>
+    <!--type numberはonChange + evetを引数-->
+    <input type="number" onChange="doChange(event);"value="20">
+
+    <script>
+    var data = {
+        message: 'hello vue!',
+        style: 'font-size:20pt; color:red;'
+
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: data,
+    });
+
+    function doChange(){
+        data.style = 'font-size:' + event.target.value + 'pt; color:red;';
+    }
+    </script> 
+</body>
+</html>

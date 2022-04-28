@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--リスト2－12-->
+<html>
+<head>
+    <title>
+        My first VUe app
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+
+    <div id="app">
+      <!--pタグの中にh2タグを生成、挿入＝dataのmessagesで定義した内容を入れ込んでいる-->
+      <ol v-html="messages"></ol>
+      <hr>
+      <input type="text" oninput="inputs(event);">
+      <button onclick="clicks();">更新</button> 
+
+    
+    </div>
+
+
+    <script>
+    var data = {
+        messages:'<li style="color:red;">vue.js sample message.</li>'
+    };
+
+    var app = new Vue({
+        el:'#app',
+        data: data
+    });
+
+    function inputs(event){
+        console.log(event);
+        console.log(event.target);
+        data.message=event.target.value;
+        
+    };
+
+    function clicks(){
+        console.log("click");
+        data.messages+='<li>' +data.message+ '</li>';
+    };
+
+
+
+    </script> 
+ 
+</body>
+</html>

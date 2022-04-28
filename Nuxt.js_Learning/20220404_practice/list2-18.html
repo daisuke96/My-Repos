@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list2-18
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <!--sytlesというオブジェクトを指定、下記でstylesのプロパティを作成-->
+        <p :style="styles">
+            {{ message }}
+        </p>
+    </div>
+    <hr>
+
+    <script>
+    var stylelist = {
+        fontSize: '20pt',
+        color: 'orange',
+        border: '2px solid',
+    };
+
+    var data = {
+        message: 'hello vue',
+        styles: stylelist,
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: data,
+    })
+
+
+
+    </script> 
+</body>
+</html>

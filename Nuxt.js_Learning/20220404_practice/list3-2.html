@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list3-2
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        .hello{
+            font-size: 20pt;
+            font-weight: bold;
+            border: 1px solid magenta;
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <!--helloコンポーネントの呼び出し-->
+        <hello />
+    </div>
+
+
+    <script>
+    //コンポーネントの定義
+    Vue.component('hello',
+    {
+        data:function(){
+            return {
+                message: 'This is new message'
+            };
+
+        },
+        template: '<p class="hello">Hello! {{message}}</p>'
+    })
+
+    var app = new Vue({
+        el: '#app',
+    });
+    </script>
+    
+
+
+</body>
+</html>

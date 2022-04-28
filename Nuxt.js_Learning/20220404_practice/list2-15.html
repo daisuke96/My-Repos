@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list2-15
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <!--
+        styleよりクラスを指定 ※一つずつ記載する方法
+        <p :class="{red:isRed, blue:isBlue}">
+        -->
+        <!--クラス指定時にオブジェクトのプロパティを指定することも可能
+        ※※プロパティ名がクラス名になっていること！！！※※-->
+        <p :class="classes">
+            {{ message }}
+        </p>
+        <!--style属性にオブジェクトとして複数の設定をバインド-->
+        <!--属性のプロパティでハイフンがついているものは削除し、後ろの文字を大文字にする  例：fontSize-->
+        <p :style="{fontSize:'20pt', color:'orange', border:'2px solid cyan'}">
+            {{ message }}
+        </p>
+    </div>
+    <hr>
+    <button onclick="doAction();">Click</button>
+
+    <script>
+    var classObj = {
+        red: true,
+        blue: false,
+    };
+    
+    var data = {
+        message: 'Hello Vue!',
+        //isRed: true,
+        //isBlue: false,
+        classes: classObj,
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: data,
+    });
+
+    function doAction(){
+        console.log("click")
+        //data.isRed = !data.isRed;
+        //data.isBlue = !data.isBlue;
+        classObj.red = !classObj.red;
+        classObj.blue = !classObj.blue;
+        console.log(classObj.red + "::" + classObj.blue)
+    };
+    </script>
+
+    <style>
+        .red {
+            font-size: 20pt;
+            font-weight: bold;
+            font-style: normal;
+            color: red;
+        }
+
+        .blue {
+            font-size: 24pt;
+            font-weight: plain;
+            font-style: italic;
+            color: blue;
+        }
+    </style>
+
+</body>
+</html>

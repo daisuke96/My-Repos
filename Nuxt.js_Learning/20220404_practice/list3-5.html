@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list3-5
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        .hello{
+            font-size: 20pt;
+            font-weight: bold;
+            border: 1px solid magenta;
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <!--テキストボックスをVue dataプロパティ（dataName）にバインド-->
+        <input type="text" v-model="dataName">
+        <!--helloコンポーネントの呼び出し、name属性をdataプロパティ(dataName)にバインド-->
+        <div><hello :name="dataName" /></div>
+        { {dataName} }で呼び出しも可→{{dataName}}
+    </div>
+
+
+    <script>
+    //コンポーネントの定義
+    Vue.component('hello',{
+        //コンポーネントで使う変数を定義
+        data: function(){
+            return {
+                message: 'this is message'
+            };            
+        },
+
+        template: '<p class="hello">hello, {{name}} !!! {{message}}</p>',
+        //使用する属性を定義（この場合はname属性）
+        props: ['name'],        
+    });
+
+    var app = new Vue({
+        el: '#app',
+        //インスタンスの初期変数を定義
+        data: {
+            dataName:'non-name'
+        }
+    });
+    </script>
+    
+
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        list2-19
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <h1 v-if="flag" class="ok">{{ message }}</h1>
+        <p v-else class="ng">{{ message }}</p>
+
+        <template v-if="flag">
+            <p>データをテーブル表示</p>
+            <table>
+                <tr><th>Name</th><th>mail</th></tr>
+                <tr><td>Taro</td><td>taro@yamada</td></tr>
+                <tr><td>hanako</td><td>hanako@sato</td></tr>
+            </table>
+        </template>
+        <template v-else>
+           <p>データをリスト表示</p>
+           <ul>
+               <li>taroのアドレスはtaro@yamadaです。</li>
+               <li>hanakoのアドレスはhanako@satoです。</li>
+           </ul> 
+        </template>
+
+
+    </div>
+    <hr>
+    <button onclick="doAction();">切り替え</button>
+
+
+    <script>
+    var data = {
+        message: '',
+        flag: false,
+    };
+
+    var app = new Vue({
+        el:'#app',
+        data: data,
+    });
+
+    function doAction(){
+        data.flag = !data.flag;
+        if(data.flag == true){
+            data.message = 'OK';
+        }else{
+            data.message = 'NG';
+        }
+
+    }
+    </script>
+    <style>
+        .ok{
+            font-size: 24pt;
+            color: blue;
+            padding: 5px 10px;
+            border: 2px solid red;
+        }
+        .ng{
+            font-size: 20pt;
+            color: red;
+        }
+        table tr th{
+            font-size:16pt;
+            color:white;
+            background-color: blue;
+            padding: 5px 15px;
+        }
+        table tr td {
+            font-size:16pt;
+            color: gray;
+            border: 1px solid gray;
+        }
+        li{
+            font-size:16pt;
+            color: gray;
+        }
+    </style> 
+</body>
+</html>

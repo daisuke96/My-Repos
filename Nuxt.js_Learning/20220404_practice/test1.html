@@ -1,0 +1,126 @@
+<script>
+//通常の関数の書き方
+function helloworld(){
+    console.log("hello world");
+    alert("hello")
+}
+
+//変数として関数を宣言
+var varhello=function(){
+    console.log("var")
+
+}
+
+//アロー関数を使用する場合
+function hello(name){
+    console.log('hello '+name()+'!!');
+}
+
+hello(()=>{return 'taro';});
+hello(()=>'hanako');
+
+varhello();
+helloworld();
+
+//-------------------------
+//オブジェクトとプロパティの定義
+let ob={
+    chara1:'wraith', 
+    chara2:'path', 
+    chara3:'giby',
+    totalchara:function(){
+        return this.chara1+'&'+this.chara2+'&'+this.chara3
+    }
+
+}
+
+console.log('choose charactor：'+ob.chara1+' or '+ob.chara2+' or '+ob.chara3);
+console.log(ob.totalchara());
+
+
+//-------------------------------
+//コンストラクタ関数（コンストラクタ変数とメソッドを関数内に定義）
+
+function Myobj(r,g,b){
+    this.red = r;
+    this.green = g;
+    this.blue = b;
+
+    this.total = function(){
+        return this.red + this.green + this.blue;
+    }
+
+    this.getHex = function(){
+        return '#'+('00'+this.red.toString(16)).substr(-2)
+        +('00'+this.green.toString(16)).substr(-2)
+        +('00'+this.blue.toString(16)).substr(-2)
+    }
+
+    this.getStartP = function(){
+        return '<p style="background-color:'+this.getHex()+'">';
+    }
+
+    this.getEndP = function(){
+        return '</p>';
+    }
+
+    this.writeP = function(){
+        document.write(this.getStartP());
+        document.write(this.total());
+        document.write(this.getEndP());
+    }
+
+};
+
+let obj = new Myobj(255,200,200);
+document.write(obj.total());
+obj.writeP();
+
+let obj2 = new Myobj(0, 100, 170);
+obj2.writeP();
+
+//-----------------------------------------------
+//上記をクラス化（コンストラクタ変数は一つの関数で定義、メソッドは別関数として定義）
+// ※一部getterを使用
+
+class Myobj_class{
+    constructor(r,g,b){
+        this.red = r;
+        this.green = g;
+        this.blue = b;
+    }
+
+    get total(){
+        return this.red + this.green + this.blue;
+    }
+
+    get Hex(){
+        return '#'+('00'+this.red.toString(16)).substr(-2)
+        +('00'+this.green.toString(16)).substr(-2)
+        +('00'+this.blue.toString(16)).substr(-2)
+    }
+
+    get StartP(){
+        return '<p style="background-color:'+this.Hex+'">';
+    }
+
+    get EndP(){
+        return '</p>';
+    }
+
+    writeP(){
+        document.write(this.StartP);
+        document.write(this.total);
+        document.write(this.EndP);
+    }
+
+};
+
+let obj_class = new Myobj_class(255,200,200);
+document.write(obj_class.total);
+obj_class.writeP();
+
+let obj3 = new Myobj_class(0, 100, 170);
+obj3.writeP();
+
+</script>
