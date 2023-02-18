@@ -19,3 +19,5 @@
 
 ## rails-vue
 - railsとvueを用いたWebアプリ
+
+2023/02更新
